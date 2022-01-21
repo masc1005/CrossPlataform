@@ -13,5 +13,5 @@ server.use(express.json());
 server.use(routes);
 
 server.listen(process.env.SERVER_PORT, ()=> {
-  console.log("Servidor Rodando", process.env.SERVER_PORT);
+  console.log("Server On!");
 })

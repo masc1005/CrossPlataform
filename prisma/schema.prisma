@@ -23,6 +23,8 @@ model UserRole {
   user    User   @relation(fields: [user_id], references: [id])
   role_id Int
   role    Role   @relation(fields: [role_id], references: [id])
+
+  @@map("user_role")
 }
 
 model Role {
