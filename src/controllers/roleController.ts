@@ -5,6 +5,12 @@ class Role {
   async create(req: Request, res: Response) {
     const { name, description } = req.body;
 
+    const roleExits = await prismaClient.role.findFirst({ where: {name : name} })
+
+    if (roleExits){
+      return res.sendStatus(409)
+    }
+
     const role = await prismaClient.role.create({
       data: {
         name, description
