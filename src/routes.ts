@@ -13,6 +13,7 @@ routes.get("/user", authMiddleware, user.read)
 
 
 routes.post("/role", role.create);
+routes.get("/role", role.read);
 
 
 routes.post("/auth", auth.authenticate);
