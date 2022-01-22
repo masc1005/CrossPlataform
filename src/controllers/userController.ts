@@ -3,6 +3,7 @@ import bcryptjs from 'bcryptjs'
 import { prismaClient } from '../database/prismaClient';
 
 class User {
+
   async create(req: Request, res: Response) {
     const { name, email, pwd } = req.body
 
@@ -19,6 +20,14 @@ class User {
         name, email, password
       }
     })
+    return res.json(user);
+  }
+
+
+  async read(req: Request, res: Response) {
+    
+    const user = await prismaClient.user.findMany()
+
     return res.json(user);
   }
 
