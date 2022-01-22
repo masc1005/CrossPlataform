@@ -26,7 +26,20 @@ class User {
 
   async read(req: Request, res: Response) {  
 
-    return res.json({ userID : req.userId});
+    const userID = req.userId
+
+    const dataUser = await prismaClient.user.findFirst({where: { id: userID },
+      include: {
+        UserRole:{
+          where: { user_id: userID },
+          include: {
+            role: true
+          }
+        }
+      }
+    })
+
+    return res.json({ dataUser })
 
   }
 
