@@ -24,11 +24,10 @@ class User {
   }
 
 
-  async read(req: Request, res: Response) {
-    
-    const user = await prismaClient.user.findMany()
+  async read(req: Request, res: Response) {  
 
-    return res.json(user);
+    return res.json({ userID : req.userId});
+
   }
 
 
