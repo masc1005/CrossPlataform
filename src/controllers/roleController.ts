@@ -27,6 +27,29 @@ class Role {
 
   }
 
+  async update(req: Request, res: Response) {
+
+    const { name, description } = req.body;
+
+    const roleExits = await prismaClient.role.findFirst({ where: { name: name } })
+
+    if (roleExits) {
+      return res.sendStatus(404)
+    }
+
+    const updated = await prismaClient.role.update({ where: {
+      name: name
+    },
+    data:{
+      name: name,
+      description: description
+    }
+  })
+
+    return res.json({ updated });
+  }
+
+
   async delete(req: Request, res: Response) {
 
     const { name } = req.body;

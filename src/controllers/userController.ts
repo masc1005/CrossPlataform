@@ -39,7 +39,24 @@ class User {
       }
     })
 
+    delete dataUser.password
+
     return res.json({ dataUser })
+    
+  }
+
+  async userRole(req: Request, res: Response){
+
+    const { user_id, role_id } = req.body
+
+    const save = await prismaClient.userRole.create({
+      data:{
+        user_id,
+        role_id
+      }
+    })
+
+    res.send('Cadastrado!')
 
   }
 
